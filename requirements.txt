@@ -1,0 +1,4 @@
+apscheduler
+flask_cors
+flask
+covidify
