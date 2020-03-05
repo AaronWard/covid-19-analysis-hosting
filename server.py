@@ -30,6 +30,13 @@ def send_file(filename):
     '''
     return os.path.join(app.config['FOLDER'], filename)
 
+@app.route('/') 
+def index(): 
+    '''
+    Return the requested images back to the github readme
+    '''
+    return jsonify({'results': 'example'})
+
 # Load the model and run the server
 if __name__ == "__main__":
     app.debug = True
