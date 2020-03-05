@@ -7,7 +7,6 @@ generation of up to date reports for the readme
 import os 
 import sys
 from flask import (Flask, request, g, redirect, url_for, abort, Response, jsonify, send_from_directory)
-from flask_cors import CORS, cross_origin
 from apscheduler.schedulers.blocking import BlockingScheduler
 from datetime import datetime, date, time 
 
