@@ -32,6 +32,6 @@ def send_file(filename):
 
 # Load the model and run the server
 if __name__ == "__main__":
-    app.debug = False
+    app.debug = True
     port = int(os.environ.get("PORT", 8888))
     app.run(port=port)
