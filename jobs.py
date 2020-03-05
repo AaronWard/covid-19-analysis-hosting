@@ -1,6 +1,6 @@
 
 from apscheduler.schedulers.blocking import BlockingScheduler
-from app import run_covidify
+from server import run_covidify
 
 sched = BlockingScheduler()
 
