@@ -13,8 +13,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 # sched = BlockingScheduler()
 app = Flask(__name__, static_folder='static')
-app.config['FOLDER'] = './static'
-app.config['UPLOADED_PHOTOS_DEST'] = os.path.join(basedir, 'output')
+app.config['FOLDER'] = os.path.join(os.getcwd(),'static')
 
 if not os.path.exists(app.config['FOLDER']):
     os.makedirs(app.config['FOLDER'])
@@ -31,10 +30,15 @@ def send_graph(filename):
     '''
     Return the requested images back to the github readme
     '''
-    print(os.system('ls ' + str(os.getcwd())))
-    print(os.system('ls ' + str(app.config['FOLDER'])))
-    image = os.path.join(app.config['FOLDER'],'reports', 'images', filename)        
-    
+    print('FILE NAME: ', filename)
+
+    print('CWD ...')
+    print('...', os.system('ls ' + str(os.getcwd())))
+
+    print('FOLDER ...')
+    print('...', os.system('ls ' + str(app.config['FOLDER'])))
+
+    image = os.path.join(app.config['FOLDER'],'reports', 'images', filename)         
     return send_file(image)
 
 @app.route('/') 
