@@ -21,7 +21,7 @@ def run_covidify():
     os.system('rm -rf ' + os.path.join(app.config['UPLOAD_FOLDER'], 'data'))
     os.system('rm -rf ' + os.path.join(app.config['UPLOAD_FOLDER'], 'reports', '*.xlsx'))
 
-@app.route('/<path:filename>')
+@app.route('/static/<path:filename>')
 def send_img(filename):
     try:
         return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
