@@ -6,7 +6,7 @@ generation of up to date reports for the readme
 
 import os 
 import sys
-from flask import (Flask, request, g, redirect, url_for, abort, Response, jsonify, send_from_directory)
+from flask import (Flask,send_file, request, g, redirect, url_for, abort, Response, jsonify, send_from_directory)
 from datetime import datetime, date, time 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -27,13 +27,15 @@ def run_covidify():
     os.system('rm -rf ' + os.path.join(app.config['FOLDER'], 'reports', '*.xlsx'))
 
 @app.route('/<path:filename>') 
-def send_file(filename): 
+def send_graph(filename): 
     '''
     Return the requested images back to the github readme
     '''
     print(os.system('ls ' + str(os.getcwd())))
     print(os.system('ls ' + str(app.config['FOLDER'])))
-    return (app.config['FOLDER'],'reports', 'images', filename)
+    image = os.path.join(app.config['FOLDER'],'reports', 'images', filename)        
+    
+    return send_file(image)
 
 @app.route('/') 
 def index(): 
