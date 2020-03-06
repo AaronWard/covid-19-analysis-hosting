@@ -12,7 +12,7 @@ from datetime import datetime, date, time
 
 sched = BlockingScheduler()
 app = Flask(__name__)
-app.config['FOLDER'] = os.path.join(os.getcwd(),'reports', 'images')
+app.config['FOLDER'] = 'static'
 
 # called by the scheduler every hour
 def run_covidify():
@@ -28,6 +28,9 @@ def send_file(filename):
     '''
     Return the requested images back to the github readme
     '''
+    print(os.getcwd())
+    print(app.config['FOLDER'])
+
     return os.path.join(app.config['FOLDER'], filename)
 
 @app.route('/') 
@@ -40,5 +43,5 @@ def index():
 # Load the model and run the server
 if __name__ == "__main__":
     app.debug = True
-    port = int(os.environ.get("PORT", 8888))
+    port = int(os.environ.get("PORT", 7654))
     app.run(port=port)
