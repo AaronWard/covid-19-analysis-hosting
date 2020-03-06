@@ -22,8 +22,8 @@ def run_covidify():
     print('Running covidify at :', datetime.date(datetime.now()))
     os.system('covidify run --output=' + app.config['UPLOADED_PHOTOS_DEST'])
     # os.system('mv ./reports/images/*.jpg ./static')
-    os.system('rm -rf ' + app.config['UPLOADED_PHOTOS_DEST'] + '/data')
-    os.system('rm -rf ' + app.config['UPLOADED_PHOTOS_DEST'] + '/reports/*.xlsx')
+    # os.system('rm -rf ' + app.config['UPLOADED_PHOTOS_DEST'] + '/data')
+    # os.system('rm -rf ' + app.config['UPLOADED_PHOTOS_DEST'] + '/reports/*.xlsx')
 
 
 @app.route('/images/<filename>') 
