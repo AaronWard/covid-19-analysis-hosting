@@ -13,7 +13,7 @@ from datetime import datetime, date, time
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 sched = BlockingScheduler()
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='static')
 app.config['FOLDER'] = 'static'
 app.config['UPLOADED_PHOTOS_DEST'] = os.path.join(basedir, 'output')
 
@@ -23,7 +23,7 @@ if not os.path.exists(app.config['UPLOADED_PHOTOS_DEST']):
 # called by the scheduler every hour
 def run_covidify():
     print('Running covidify at :', datetime.date(datetime.now()))
-    os.system('cd ' + app.config['UPLOADED_PHOTOS_DEST'])
+    os.system('cd ' + app.config['FOLDER'])
     os.system('covidify run --output=./')
     # os.system('mv ./reports/images/*.jpg ./static')
     # os.system('rm -rf ' + app.config['UPLOADED_PHOTOS_DEST'] + '/data')
@@ -36,8 +36,8 @@ def send_file(filename):
     Return the requested images back to the github readme
     '''
     print(os.system('ls ' + str(os.getcwd())))
-    print(os.system('ls ' + str(app.config['UPLOADED_PHOTOS_DEST'])))
-    return os.path.join(app.config['UPLOADED_PHOTOS_DEST'],'reports', 'images', filename)
+    print(os.system('ls ' + str(app.config['FOLDER'])))
+    return os.path.join(app.config['FOLDER'],'reports', 'images', filename)
 
 @app.route('/') 
 def index(): 
