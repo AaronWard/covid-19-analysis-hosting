@@ -28,9 +28,8 @@ def send_file(filename):
     '''
     Return the requested images back to the github readme
     '''
-    print(os.getcwd())
-    print(app.config['FOLDER'])
-
+    print(os.system('ls ' + str(os.getcwd())))
+    print(os.system('ls ' + str(app.config['FOLDER'])))
     return os.path.join(app.config['FOLDER'], filename)
 
 @app.route('/') 
