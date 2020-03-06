@@ -16,6 +16,7 @@ sched = BlockingScheduler()
 app = Flask(__name__)
 app.config['FOLDER'] = 'static'
 app.config['UPLOADED_PHOTOS_DEST'] = os.path.join(basedir, 'output')
+os.makedirs(app.config['UPLOADED_PHOTOS_DEST'])
 
 # called by the scheduler every hour
 def run_covidify():
